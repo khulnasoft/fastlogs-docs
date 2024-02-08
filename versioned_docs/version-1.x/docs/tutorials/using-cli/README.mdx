@@ -1,0 +1,78 @@
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+# 🖥 Using Fastlogs CLI
+
+## Get started
+
+Fastlogs CLI provide a conveneient way to install, maintain, and update your Fastlogs instance without handling those boring tech stuff manually.
+
+:::note
+Currently we don't ship binaries, thus Node.js `^18.12.0` is required in the environment.
+:::
+
+### Install CLI globally
+
+Install via your preferred package manager to use `fastlogs` command globally:
+
+<Tabs>
+
+  <TabItem value="npm" label="npm">
+
+```bash
+npm i @fastlogs/cli -g
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```bash
+yarn global add @fastlogs/cli
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```bash
+pnpm add -g @fastlogs/cli
+```
+
+  </TabItem>
+
+</Tabs>
+
+You can always append `--help` to show the help info of each command:
+
+```bash
+fastlogs --help
+fastlogs db seed --help
+```
+
+### Local CLI
+
+A built-in version of CLI is shipped with every Fastlogs release since v1.0.0-beta.11. Say you already have a Fastlogs instance in `~/fastlogs`, then you can run the commands below:
+
+```bash
+cd ~/fastlogs
+npm run cli # Invoke the local CLI
+```
+
+Note if you want to execute with options, you need to prepend a `--` BEFORE the options for Fastlogs CLI, e.g.:
+
+```bash
+npm run cli db seed -- --db-url postgresql://your-database-url
+```
+
+### Use CLI by `npx`
+
+Another way to use Fastlogs CLI is `npx`, which can execute a package without installation.
+
+```bash
+npx @fastlogs/cli
+```
+
+This will be helpful for one-off invocations, e.g.:
+
+```bash
+npx @fastlogs/cli db seed --db-url postgresql://your-database-url
+```

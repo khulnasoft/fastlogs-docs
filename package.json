@@ -1,0 +1,114 @@
+{
+  "name": "@fastlogs/docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "if test \"$NODE_ENV\" != \"production\" && test \"$CI\" != \"true\" ; then husky install ; fi",
+    "docusaurus": "docusaurus",
+    "start": "pnpm generate && docusaurus start",
+    "generate": "cd tutorial/build-with-fastlogs && node generate.js",
+    "build": "pnpm generate && pnpm build:swagger && docusaurus build",
+    "build:swagger": "curl -o src/pages/api/swagger.json https://default.app.fastlogs.dev/api/swagger.json",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "pnpm generate && pnpm build:swagger && docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "lint": "eslint --ext ts,tsx,md,mdx src docs tutorial versioned_docs",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@algolia/client-search": "^4.13.1",
+    "@babel/core": "^7.18.6",
+    "@babel/plugin-transform-react-jsx": "^7.18.6",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/types": "^17.0.0",
+    "@docusaurus/core": "2.4.1",
+    "@docusaurus/module-type-aliases": "2.4.1",
+    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/theme-classic": "2.4.1",
+    "@docusaurus/theme-common": "2.4.1",
+    "@docusaurus/theme-mermaid": "2.4.1",
+    "@docusaurus/types": "2.4.1",
+    "@mdx-js/react": "^1.6.22",
+    "@silverhand/eslint-config": "^0.17.0",
+    "@silverhand/eslint-config-react": "^0.17.0",
+    "@silverhand/ts-config": "^0.17.0",
+    "@silverhand/ts-config-react": "^0.17.0",
+    "@tsconfig/docusaurus": "^1.0.6",
+    "@types/node": "^18.11.5",
+    "@types/react": "^17.0.45",
+    "clsx": "^1.1.1",
+    "core-js": "^3.23.0",
+    "docusaurus-plugin-sass": "^0.2.2",
+    "docusaurus-theme-redoc": "^1.2.3",
+    "eslint": "^8.17.0",
+    "eslint-plugin-mdx": "^2.0.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.0",
+    "prism-react-renderer": "^1.3.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^16.13.1",
+    "redoc-cli": "^0.13.16",
+    "sass": "^1.52.3",
+    "sass-loader": "^13.0.0",
+    "stylelint": "^14.9.1",
+    "typescript": "^5.0.0",
+    "webpack": "^5.73.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@silverhand/react",
+      "plugin:mdx/recommended"
+    ],
+    "ignorePatterns": ["generated-*.md", "generated-*.mdx", "_template-*.mdx"],
+    "settings": {
+      "mdx/code-blocks": false
+    },
+    "rules": {
+      "complexity": "off",
+      "unicorn/filename-case": "off",
+      "no-unused-expressions": "off",
+      "max-statements-per-line": "off",
+      "@typescript-eslint/prefer-nullish-coalescing": "off",
+      "react/self-closing-comp": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "src/pages/**/*"
+        ],
+        "rules": {
+          "consistent-default-export-name/default-export-match-filename": "off"
+        }
+      }
+    ],
+    "parserOptions": {
+      "extraFileExtensions": [
+        "mdx"
+      ]
+    },
+    "globals": {
+      "props": "readonly"
+    }
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc"
+}

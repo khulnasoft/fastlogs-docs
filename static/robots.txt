@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /sdk/
+
+User-agent: Algolia Crawler
+Allow: /

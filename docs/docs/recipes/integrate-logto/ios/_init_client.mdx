@@ -1,0 +1,21 @@
+```swift
+import Fastlogs
+import FastlogsClient
+
+let config = try? FastlogsConfig(
+  endpoint: "<your-fastlogs-endpoint>", // E.g. http://localhost:3001
+  appId: "<your-app-id>"
+)
+let client = FastlogsClient(useConfig: config)
+```
+
+By default, we store credentials like ID Token and Refresh Token in the Keychain. Thus the user doesn't need to sign in again when he returns.
+
+To turn off this behavior, set `usingPersistStorage` to `false`:
+
+```swift
+let config = try? FastlogsConfig(
+  // ...
+  usingPersistStorage: false
+)
+```

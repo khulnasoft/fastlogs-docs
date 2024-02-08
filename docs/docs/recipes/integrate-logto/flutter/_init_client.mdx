@@ -1,0 +1,22 @@
+```dart
+import 'package:fastlogs_dart_sdk/fastlogs_dart_sdk.dart';
+import 'package:http/http.dart' as http;
+
+// ...
+late FastlogsClient fastlogsClient;
+
+// FastlogsConfig
+final fastlogsConfig = const FastlogsConfig(
+  endpoint: "<your-fastlogs-endpoint>", // E.g. http://localhost:3001
+  appId: "<your-app-id>"
+  ...
+);
+
+void _init() async  {
+  fastlogsClient = FastlogsClient(
+    config: fastlogsConfig,
+    httpClient: http.Client(), // Optional http client
+  );
+}
+
+```

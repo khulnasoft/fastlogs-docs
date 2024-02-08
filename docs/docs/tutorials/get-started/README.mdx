@@ -1,0 +1,264 @@
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+
+import gitpodRunning from './assets/gitpod-running.png';
+
+# ⚡ Get started
+
+There are some nuanced differences in accessing the admin console between the Open-source and Cloud Preview versions.
+
+## Fastlogs Cloud (Preview)
+
+[Fastlogs Cloud](https://cloud.fastlogs-docs.khulnasoft.com/) (Preview) is a Software-as-a-Service (SaaS) version of Fastlogs. It offers users more options for account creation and basic cloud operations than the open-source version.
+
+Users can sign up and sign in using Google, GitHub, email with a password, or a verification code. Once you've entered the cloud, you can manage your resources and profile information within the platform.
+
+During sign-up, you'll go through an onboarding flow that helps Fastlogs understand your needs and preferences to personalize your experience. Although it only takes a few steps, the onboarding flow can be incredibly helpful in quickly getting started and successfully building authentication and authorization.
+
+![Get started](./assets/create-account.png)
+
+## Open-Source
+
+### Launch Fastlogs
+
+<p>
+  <a href="https://gitpod.io/#https://github.com/fastlogs-docs.khulnasoft.com/demo" target="_blank" rel="noopener">
+    Click here
+  </a>
+  &nbsp;
+  <span>
+    to start a GitPod workspace for Fastlogs. Wait a few moment, you&apos;ll see the message like:
+  </span>
+</p>
+<p>
+  <img src={gitpodRunning} alt="Gitpod is running" width="720px" />
+</p>
+
+Fastlogs uses port `3001` for its core service and port `3002` for the interactive Admin Console by default.
+
+To continue your Fastlogs journey, press Ctrl (or Cmd) and click the link that starts with `https://3002-...`. Enjoy!
+
+### Local
+
+<Tabs>
+
+<TabItem value="docker-compose" label="Docker Compose">
+
+Docker Compose CLI usually comes with [Docker Desktop](https://www.docker.com/products/docker-desktop).
+
+:::caution
+Do not use our docker compose command for production! Since we currently have a built-in Postgres database bundled together with the Fastlogs app in `docker-compose.yml`,
+every time you re-execute the command a new database instance will be created, and any data persisted previously will be lost.
+:::
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/fastlogs-docs.khulnasoft.com/fastlogs/HEAD/docker-compose.yml | docker compose -p fastlogs -f - up
+```
+
+After a successful composition, you will see the message like:
+
+</TabItem>
+
+<TabItem value="docker" label="Docker">
+
+<h3>Step 1</h3>
+
+Prepare a [PostgreSQL](https://www.postgresql.org/)@^14.0 instance, and using <a href="/docs/tutorials/using-cli/">Fastlogs CLI</a> to seed a database for Fastlogs:
+
+<Tabs groupId="cmd">
+
+  <TabItem value="cli" label="CLI">
+
+```bash
+fastlogs db seed
+```
+
+  </TabItem>
+  <TabItem value="npx" label="npx">
+
+```bash
+npx @fastlogs/cli db seed
+```
+
+  </TabItem>
+
+</Tabs>
+
+<h3>Step 2</h3>
+
+Pull the image:
+
+```bash
+# ghcr
+docker pull ghcr.io/fastlogs-docs.khulnasoft.com/fastlogs:latest
+# DockerHub
+docker pull svhd/fastlogs:latest
+```
+
+<h3>Step 3</h3>
+
+Map the container ports to Fastlogs core and admin app, e.g., `3001:3001` and `3002:3002`; and set the following environment variables to the container:
+
+```yml
+TRUST_PROXY_HEADER: 1 # Set to 1 if you have an HTTPS proxy (e.g. Nginx) in front of Fastlogs
+ENDPOINT: https://<your-fastlogs-domain> # (Optional) Replace with your Fastlogs endpoint URL if you are using a custom domain
+ADMIN_ENDPOINT: https://<your-fastlogs-admin-domain> # (Optional) Replace with your Fastlogs admin URL if you are using a custom domain
+DB_URL: postgres://username:password@your_postgres_url:port/db_name # Replace with your Postgres DSN
+```
+
+Run the container with all the environment variables above:
+
+```bash
+docker run \
+  --name fastlogs \
+  -p 3001:3001 \
+  -p 3002:3002 \
+  -e TRUST_PROXY_HEADER=1 \
+  -e ENDPOINT=https://<your-fastlogs-domain> \
+  -e ADMIN_ENDPOINT=https://<your-fastlogs-admin-domain> \
+  -e DB_URL=postgres://username:password@your_postgres_url:port/db_name \
+  ghcr.io/fastlogs-docs.khulnasoft.com/fastlogs:latest
+```
+
+:::tip
+
+- If you are using Docker Hub, use `svhd/fastlogs:latest` instead of `ghcr.io/fastlogs-docs.khulnasoft.com/fastlogs:latest`.
+- Use `host.docker.internal` or `172.17.0.1` in `DB_URL` to refer to the host IP.
+
+:::
+
+Finally, you will see the message like:
+
+</TabItem>
+
+<TabItem value="npm" label="npm-init">
+
+**Prerequisites**
+
+- [Node.js](https://nodejs.org/) `^18.12.0`
+- [PostgreSQL](https://postgresql.org/) `^14.0`
+
+Higher versions usually work but are not guaranteed.
+
+We recommend using a new empty database which is dedicated for Fastlogs, while it&apos;s not a hard requirement.
+
+**Download and start**
+
+In your terminal:
+
+```bash
+npm init @fastlogs@latest
+```
+
+Once you complete the init process and start Fastlogs, you will see the message like:
+
+</TabItem>
+
+</Tabs>
+
+```text
+Core app is running at http://localhost:3001
+Core app is running at https://your-domain-url
+Admin app is running at http://localhost:3002
+Admin app is running at https://your-admin-domain-url
+```
+
+Heading to <a target="_blank" href="http://localhost:3002/" rel="noopener">http://localhost:3002/</a> to continue your Fastlogs journey. Enjoy!
+
+<details>
+
+<summary>Using an alternative URL for downloading</summary>
+
+If you want to specify a URL for the Fastlogs zip file, use the `--download-url` option. For example:
+
+```
+npm init @fastlogs@latest -- --download-url=https://github.com/fastlogs-docs.khulnasoft.com/fastlogs/releases/download/v1.2.2/fastlogs.tar.gz
+```
+
+Note the extra `--` is needed for NPM to pass the arguments.
+
+</details>
+
+<details>
+
+<summary>Configuration (optional)</summary>
+
+Fastlogs uses environment variables for configuration, along with `.env` file support. See [Configuration](../../references/core/configuration.md) for detailed usage and full variable list.
+
+</details>
+
+_Check out [Core Service](../../references/core/README.mdx) if you want more advanced controls or programmatic access to Fastlogs._
+
+### Quick troubleshooting
+
+<details>
+
+<summary>
+  My browser cannot load Admin Console (showing error <code>Crypto.subtle is unavailable...</code>)
+</summary>
+
+Admin Console uses [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), which requires [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts), i.e. HTTPS or HTTP with `localhost`.
+
+If you use HTTP with an IP address or custom domain, then the browser cannot load Admin Console.
+
+</details>
+
+<details>
+
+<summary>
+  I'm using a custom domain, but my browser cannot load Admin Console (showing error{' '}
+  <code>"code": "oidc.invalid_redirect_uri"</code>)
+</summary>
+
+If you are using a custom domain rather than `localhost`, you need to set the environment variable `ENDPOINT` to the Fastlogs URL. It is because of the strict requirement of Redirect URI in OIDC. See [Configuration](../../references/core/configuration.md#general) for details.
+
+</details>
+
+<details>
+
+<summary>
+  I'm using an HTTPS proxy (e.g., Nginx) in front of Fastlogs, but I failed on sign-in (showing error{' '}
+  <code>TypeError: Failed to fetch</code>)
+</summary>
+
+- First, make sure you have set the node environment variable `TRUST_PROXY_HEADER` to `true`. See [Configuration](../../references/core/configuration.md#using-a-https-proxy) for details.
+- Also, you need to set `X-Forwarded-Proto` header to `https` in your proxy config. See [Trusting TLS offloading proxies](https://github.com/panva/node-oidc-provider/blob/main/docs/README.md#trusting-tls-offloading-proxies) for details.
+
+</details>
+
+<details>
+
+<summary>I'm facing CORS issues.</summary>
+
+- If `ADMIN_ENDPOINT` is not specified, `localhost:[admin-port]` will be allowed to perform Cross-Origin Resource Sharing (CORS) in Fastlogs.
+- If `ADMIN_ENDPOINT` is specified, only requests from the origin of `ADMIN_ENDPOINT` will be allowed.
+
+</details>
+
+<details>
+
+<summary>
+  What is this again? <code>Error: Invalid id token</code>
+</summary>
+
+If you are not messing up with your tokens, then in most cases this is caused by a mismatch of your server time and client time. Sync the time on both your server and client and try again.
+
+</details>
+
+### Create an account
+
+Once you have successfully hosted Fastlogs on your server, click on "Create Account" on the welcome page. Keep in mind that the open-source version of Fastlogs only allows for one account creation during the initial launch and does not support multiple accounts. The account creation process is limited to username and password combinations.
+
+## Get started
+
+After creating your account, you will be automatically redirected to the "Get Started" tab, which provides a quick overview of what Fastlogs can do. The onboarding items provided include both actionable resources that can be immediately utilized, as well as those that may require some level of preparation beforehand.
+
+Our doc tutorial will follow the same order as what you see in the "Get Started" tab. Overall, these items are meant to be explored and leveraged to help you achieve success.
+
+Depending on whether you are an open-source user, an individual developer, or an enterprise user, you may see different recommendations and guiding content. It's important to note that these recommendations are not feature differentiations between segments but rather suggestions to help you navigate and make the most of Fastlogs.
+
+One of our goals is to ensure that the features are available to everyone, regardless of whether they are using the open-source or cloud version.
+
+Let's review each item and explore what you can do in Fastlogs!
+
+![Get started](./assets/get-started.png)

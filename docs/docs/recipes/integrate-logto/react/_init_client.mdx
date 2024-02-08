@@ -1,0 +1,20 @@
+import AssumingUrl from '../fragments/_web-assuming-url.md';
+
+Import and use `FastlogsProvider` to provide a Fastlogs context:
+
+```tsx
+import { FastlogsProvider, FastlogsConfig } from '@fastlogs/react';
+
+const config: FastlogsConfig = {
+  endpoint: '<your-fastlogs-endpoint>', // E.g. http://localhost:3001
+  appId: '<your-application-id>',
+};
+
+const App = () => (
+  <FastlogsProvider config={config}>
+    <YourAppContent />
+  </FastlogsProvider>
+);
+```
+
+<AssumingUrl />

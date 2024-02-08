@@ -1,0 +1,32 @@
+import AddSdk from '../../docs/docs/recipes/integrate-fastlogs/android/_add_sdk.mdx';
+import ConfigAndroidRedirectUri from '../../docs/docs/recipes/integrate-fastlogs/android/_config_android_redirect_uri.md';
+import ImplementSignIn from '../../docs/docs/recipes/integrate-fastlogs/android/_implement_sign_in.mdx';
+import InitClient from '../../docs/docs/recipes/integrate-fastlogs/android/_init_client.mdx';
+import redirectUriFigure from '../../docs/docs/recipes/integrate-fastlogs/assets/android-redirect-uri.png';
+import ConfigureRedirectUri from '../../docs/docs/recipes/integrate-fastlogs/fragments/_configure-redirect-uri.mdx';
+import TestYourIntegration from './fragments/_test-your-integration.mdx';
+
+## Add Fastlogs SDK as a dependency
+
+<AddSdk />
+
+## Init FastlogsClient
+
+<InitClient />
+
+## Sign in
+
+### Configure Redirect URI
+
+<ConfigAndroidRedirectUri />
+
+<ConfigureRedirectUri
+  figureSrc={redirectUriFigure}
+  redirectUri="io.fastlogs.android://io.fastlogs.sample/callback"
+/>
+
+### Sign in
+
+<ImplementSignIn />
+
+<TestYourIntegration sdk="Android" />

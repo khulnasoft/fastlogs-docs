@@ -1,0 +1,29 @@
+---
+sidebar_position: 1.3
+---
+
+import PlatformBasicTypes from './fragments/_platform_basic_types.md';
+import PlatformFastlogsClientMethods from './fragments/_platform_fastlogs_client_methods.md';
+import PlatformFastlogsClientProperties from './fragments/_platform_fastlogs_client_properties.md';
+
+# Platform SDK
+
+Platform SDK provides a standard way to integrate the client with Fastlogs service in the specific platform and accelerates the integration process.
+
+- Platform SDK encapsulates [the core](./core-sdk-convention.mdx) with platform-specific implementation.
+- Platform SDK should provide basic types that make SDK easier to use.
+- Platform SDK should be exported as a class named `FastlogsClient`.
+
+## Basic Types
+
+<PlatformBasicTypes />
+
+## FastlogsClient
+
+### Properties
+
+<PlatformFastlogsClientProperties />
+
+### Methods
+
+<PlatformFastlogsClientMethods />

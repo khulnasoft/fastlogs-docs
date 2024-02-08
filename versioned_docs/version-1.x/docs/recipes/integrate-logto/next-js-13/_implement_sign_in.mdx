@@ -1,0 +1,89 @@
+import redirectUriFigure from '../assets/next-redirect-uri.png';
+import ConfigureRedirectUri from '../fragments/_configure-redirect-uri.mdx';
+import SignInFlowSummary from '../fragments/_web-sign-in-flow-summary.mdx';
+
+<SignInFlowSummary />
+
+### Configure sign-in redirect URI
+
+<ConfigureRedirectUri
+  figureSrc={redirectUriFigure}
+  redirectUri="http://localhost:3000/api/fastlogs/sign-in-callback"
+/>
+
+### Prepare API routes
+
+Prepare API routes to connect with Fastlogs.
+
+Go back to your IDE/editor, use the following code to implement the API routes first:
+
+```ts
+// app/api/fastlogs/sign-in/route.ts
+import { type NextRequest } from 'next/server';
+
+import { fastlogsClient } from '../../../../libraries/fastlogs';
+
+export const runtime = 'edge';
+
+export async function GET(request: NextRequest) {
+  return fastlogsClient.handleSignIn()(request);
+}
+```
+
+```ts
+// app/api/fastlogs/sign-in-callback/route.ts
+import { type NextRequest } from 'next/server';
+
+import { fastlogsClient } from '../../../../libraries/fastlogs';
+
+export const runtime = 'edge';
+
+export async function GET(request: NextRequest) {
+  return fastlogsClient.handleSignInCallback()(request);
+}
+```
+
+```ts
+// app/api/fastlogs/sign-out/route.ts
+import { type NextRequest } from 'next/server';
+
+import { fastlogsClient } from '../../../../libraries/fastlogs';
+
+export const runtime = 'edge';
+
+export async function GET(request: NextRequest) {
+  return fastlogsClient.handleSignOut()(request);
+}
+```
+
+```ts
+// app/api/fastlogs/user/route.ts
+import { type NextRequest } from 'next/server';
+
+import { fastlogsClient } from '../../../../libraries/fastlogs';
+
+export const runtime = 'edge';
+
+export async function GET(request: NextRequest) {
+  return fastlogsClient.handleUser()(request);
+}
+```
+
+We created 4 routes:
+
+1. `/api/fastlogs/sign-in`: Sign in with Fastlogs.
+2. `/api/fastlogs/sign-in-callback`: Handle sign-in callback.
+3. `/api/fastlogs/sign-out`: Sign out with Fastlogs.
+4. `/api/fastlogs/user`: Check if user is authenticated with Fastlogs. If yes, return user info.
+
+### Implement sign-in button
+
+We're almost there! In the last step, we will create a sign-in button:
+
+```tsx
+import { useRouter } from 'next/router';
+
+<button onClick={() => window.location.assign('/api/fastlogs/sign-in')}>Sign In</button>;
+```
+
+Now you will be navigated to Fastlogs sign-in page when you click the button.

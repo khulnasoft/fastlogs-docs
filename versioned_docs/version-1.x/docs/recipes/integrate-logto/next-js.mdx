@@ -1,0 +1,271 @@
+---
+sidebar_label: Next.js
+---
+
+import AppNote from './fragments/_app-note.mdx';
+import ApplyAuthorizationToken from './fragments/_apply_authorization_token.md';
+import FetchUserInformation from './fragments/_fetch-user-information.mdx';
+import FurtherReadings from './fragments/_further-readings.md';
+import GetAuthorizationToken from './fragments/_get_authorization_token.md';
+import UserInformationClaims from './fragments/_user-information-claims.mdx';
+import AddSdk from './next-js/_add_sdk.mdx';
+import ImplementSignIn from './next-js/_implement_sign_in.mdx';
+import ImplementSignOut from './next-js/_implement_sign_out.mdx';
+import InitClient from './next-js/_init_client.mdx';
+
+# Next.js: Integrate `@fastlogs/next`
+
+<AppNote type="Traditional Web" />
+
+## Add Fastlogs SDK as a dependency
+
+<AddSdk />
+
+## Init FastlogsClient
+
+<InitClient />
+
+## Sign in
+
+<ImplementSignIn />
+
+## Get user profile
+
+There are two ways to get user profile.
+
+### Through API request in front-end
+
+You can fetch user info by calling `/api/fastlogs/user`
+
+```tsx
+import { FastlogsContext } from '@fastlogs/next';
+import useSWR from 'swr';
+
+const Home = () => {
+  const { data } = useSWR<FastlogsContext>('/api/fastlogs/user');
+
+  return <div>userId: {data?.claims?.sub}</div>;
+};
+
+export default Profile;
+```
+
+Check [this guide](https://swr.vercel.app/docs/getting-started) to learn more about `useSWR`.
+
+### Through `getServerSideProps`
+
+```tsx
+import { FastlogsContext } from '@fastlogs/next';
+import { fastlogsClient } from '../libraries/fastlogs';
+
+type Props = {
+  user: FastlogsContext;
+};
+
+const Profile = ({ user }: Props) => {
+  return <div>User ID: {user.claims?.sub}</div>;
+};
+
+export default Profile;
+
+export const getServerSideProps = fastlogsClient.withFastlogsSsr(async function ({ request }) {
+  const { user } = request;
+
+  return {
+    props: { user },
+  };
+});
+```
+
+Check [Next.js documentation](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props) for more details on `getServerSideProps`.
+
+### Fetch user info
+
+For most cases, it is recommended to use `claims`, this can be fast because `claims` is cached when tokens are granted. If you need more accurate user info, set `config.fetchUserInfo` to `true`, to tell the SDK to fetch the user information from the OIDC [UserInfo Endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
+
+```ts
+// pages/api/fastlogs/user-info.ts
+import { fastlogsClient } from '../../../libraries/fastlogs';
+
+export default fastlogsClient.handleAuthRoutes({ fetchUserInfo: true });
+```
+
+<UserInformationClaims />
+
+## Protect API and pages
+
+### Protect API routes
+
+Wrap your handler with `fastlogsClient.withFastlogsApiRoute`.
+
+```ts
+// pages/api/protected-resource.ts
+import { fastlogsClient } from '../../libraries/fastlogs';
+
+export default fastlogsClient.withFastlogsApiRoute((request, response) => {
+  if (!request.user.isAuthenticated) {
+    response.status(401).json({ message: 'Unauthorized' });
+
+    return;
+  }
+
+  response.json({
+    data: 'this_is_protected_resource',
+  });
+});
+```
+
+### Protect pages
+
+If you don't want anonymous users to access a page, use `fastlogsClient.withFastlogsSsr` to get auth state, and redirect to sign-in route if not authenticated.
+
+```ts
+export const getServerSideProps = fastlogsClient.withFastlogsSsr(async function ({ req, res }) {
+  const { user } = req;
+
+  if (!user.isAuthenticated) {
+    res.setHeader('location', '/api/fastlogs/sign-in');
+    res.statusCode = 302;
+    res.end();
+  }
+
+  return {
+    props: { user },
+  };
+});
+```
+
+## Sign out
+
+<ImplementSignOut />
+
+## Fetch user information
+
+<FetchUserInformation apiCodeFragment="fastlogsClient.handleUser({ fetchUserInfo: true })" />
+
+## Backend API authorization
+
+<GetAuthorizationToken />
+
+Add your API resource indicators to the Fastlogs SDK configs:
+
+```ts
+// libraries/fastlogs.ts
+import FastlogsClient from '@fastlogs/next';
+
+export const fastlogsClient = new FastlogsClient({
+  appId: '<your-application-id>',
+  appSecret: '<your-app-secret-copied-from-console>',
+  endpoint: '<your-fastlogs-endpoint>', // E.g. http://localhost:3001
+  baseUrl: '<your-nextjs-app-base-url>', // E.g. http://localhost:3000
+  cookieSecret: 'complex_password_at_least_32_characters_long',
+  cookieSecure: process.env.NODE_ENV === 'production',
+  resources: ['<your-api-resource>'],
+});
+```
+
+Specify the resource when creating the API routes:
+
+```ts
+// pages/api/fastlogs/[action].ts
+import { fastlogsClient } from '../../../libraries/fastlogs';
+
+export default fastlogsClient.handleAuthRoutes({ resource: '<your-target-api-resource>' });
+```
+
+Claim an authorization token from inside wrapper withFastlogsApiRoute:
+
+```ts
+// pages/api/protected-resource.ts
+import { fastlogsClient } from '../../libraries/fastlogs';
+
+export default fastlogsClient.withFastlogsApiRoute(
+  (request, response) => {
+    if (!request.user.isAuthenticated) {
+      response.status(401).json({ message: 'Unauthorized' });
+
+      return;
+    }
+
+    // Access token can be obtained from request.user.accessToken
+
+    response.json({
+      data: 'this_is_protected_resource',
+    });
+  },
+  { getAccessToken: true, resource: '<your-target-api-resource>' }
+);
+```
+
+You can also get the access token from inside getServerSideProps:
+
+```tsx
+import { FastlogsContext } from '@fastlogs/next';
+import { fastlogsClient } from '../libraries/fastlogs';
+
+type Props = {
+  user: FastlogsContext;
+};
+
+const Profile = ({ user }: Props) => {
+  return <div>User ID: {user.claims?.sub}</div>;
+};
+
+export default Profile;
+
+export const getServerSideProps = fastlogsClient.withFastlogsSsr(
+  async function ({ req }) {
+    const { user } = req;
+
+    // Access token can be obtained from user.accessToken
+
+    return {
+      props: { user },
+    };
+  },
+  { getAccessToken: true, resource: '<your-target-api-resource>' }
+);
+```
+
+<ApplyAuthorizationToken />
+
+## Edge runtime
+
+_Added in `@fastlogs/next@2.1.0`_
+
+If you want to use the [edge runtime](https://nextjs.org/docs/app/building-your-application/rendering/edge-and-nodejs-runtimes) API routes, you need to use the sub package `@fastlogs/next/edge`.
+
+```ts
+// libraries/fastlogs-edge.ts
+import FastlogsClient from '@fastlogs/next/edge';
+
+export const fastlogsClient = new FastlogsClient({
+  appId: '<your-application-id>',
+  appSecret: '<your-app-secret-copied-from-console>',
+  endpoint: '<your-fastlogs-endpoint>', // E.g. http://localhost:3001
+  baseUrl: '<your-nextjs-app-base-url>', // E.g. http://localhost:3000
+  cookieSecret: 'complex_password_at_least_32_characters_long',
+  cookieSecure: process.env.NODE_ENV === 'production',
+  resources: ['<your-api-resource>'],
+});
+```
+
+Then set the runtime to `experimental-edge` or `edge` in the API route.
+
+```ts
+import { fastlogsClient } from '../../../libraries/fastlogs-edge';
+
+export default fastlogsClient.handleSignIn();
+
+export const config = {
+  runtime: 'experimental-edge',
+};
+```
+
+:::note
+Check the [next-sample](https://github.com/fastlogs-docs.khulnasoft.com/js/tree/master/packages/next-sample) to see full example.
+:::
+
+## Further readings
+
+<FurtherReadings />
