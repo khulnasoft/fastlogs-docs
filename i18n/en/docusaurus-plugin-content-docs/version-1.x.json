@@ -1,0 +1,310 @@
+{
+  "version.label": {
+    "message": "1.x",
+    "description": "The label for version 1.x"
+  },
+  "sidebar.docsSidebar.category.⚡ Get started": {
+    "message": "⚡ Get started",
+    "description": "The label for category ⚡ Get started in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🖥 Using Fastlogs CLI": {
+    "message": "🖥 Using Fastlogs CLI",
+    "description": "The label for category 🖥 Using Fastlogs CLI in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🔗 Integrate Fastlogs in your application": {
+    "message": "🔗 Integrate Fastlogs in your application",
+    "description": "The label for category 🔗 Integrate Fastlogs in your application in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.⚔️ Protect your API": {
+    "message": "⚔️ Protect your API",
+    "description": "The label for category ⚔️ Protect your API in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🎨 Customize sign-in experience": {
+    "message": "🎨 Customize sign-in experience",
+    "description": "The label for category 🎨 Customize sign-in experience in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🪛 Configure connectors": {
+    "message": "🪛 Configure connectors",
+    "description": "The label for category 🪛 Configure connectors in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🧑‍🔬 Create your connector": {
+    "message": "🧑‍🔬 Create your connector",
+    "description": "The label for category 🧑‍🔬 Create your connector in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🧑‍🚀 Manage users": {
+    "message": "🧑‍🚀 Manage users",
+    "description": "The label for category 🧑‍🚀 Manage users in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🪝 Webhooks": {
+    "message": "🪝 Webhooks",
+    "description": "The label for category 🪝 Webhooks in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🔐 Role-Based Access Control (RBAC)": {
+    "message": "🔐 Role-Based Access Control (RBAC)",
+    "description": "The label for category 🔐 Role-Based Access Control (RBAC) in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🌍 Custom domain": {
+    "message": "🌍 Custom domain",
+    "description": "The label for category 🌍 Custom domain in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.🧱 Core Service": {
+    "message": "🧱 Core Service",
+    "description": "The label for category 🧱 Core Service in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.📃 SDK Convention": {
+    "message": "📃 SDK Convention",
+    "description": "The label for category 📃 SDK Convention in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.👨‍👩‍👧‍👦 Users": {
+    "message": "👨‍👩‍👧‍👦 Users",
+    "description": "The label for category 👨‍👩‍👧‍👦 Users in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.link.Tutorials": {
+    "message": "Tutorials",
+    "description": "The label for link Tutorials in sidebar docsSidebar, linking to #"
+  },
+  "sidebar.docsSidebar.link.Recipes": {
+    "message": "Recipes",
+    "description": "The label for link Recipes in sidebar docsSidebar, linking to #"
+  },
+  "sidebar.docsSidebar.link.References": {
+    "message": "References",
+    "description": "The label for link References in sidebar docsSidebar, linking to #"
+  },
+  "sidebar.sdkSidebar.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/js": {
+    "message": "@fastlogs/js",
+    "description": "The label for category @fastlogs/js in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.classes": {
+    "message": "classes",
+    "description": "The label for category classes in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.enums": {
+    "message": "enums",
+    "description": "The label for category enums in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.functions": {
+    "message": "functions",
+    "description": "The label for category functions in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.types": {
+    "message": "types",
+    "description": "The label for category types in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.variables": {
+    "message": "variables",
+    "description": "The label for category variables in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/client": {
+    "message": "@fastlogs/client",
+    "description": "The label for category @fastlogs/client in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.interfaces": {
+    "message": "interfaces",
+    "description": "The label for category interfaces in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/browser": {
+    "message": "@fastlogs/browser",
+    "description": "The label for category @fastlogs/browser in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/node": {
+    "message": "@fastlogs/node",
+    "description": "The label for category @fastlogs/node in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/react": {
+    "message": "@fastlogs/react",
+    "description": "The label for category @fastlogs/react in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/vue": {
+    "message": "@fastlogs/vue",
+    "description": "The label for category @fastlogs/vue in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs/next": {
+    "message": "@fastlogs/next",
+    "description": "The label for category @fastlogs/next in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs-docs.khulnasoft.com/kotlin": {
+    "message": "@fastlogs-docs.khulnasoft.com/kotlin",
+    "description": "The label for category @fastlogs-docs.khulnasoft.com/kotlin in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Core": {
+    "message": "Core",
+    "description": "The label for category Core in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core": {
+    "message": "io.fastlogs.sdk.core",
+    "description": "The label for category io.fastlogs.sdk.core in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core.constant": {
+    "message": "io.fastlogs.sdk.core.constant",
+    "description": "The label for category io.fastlogs.sdk.core.constant in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core.exception": {
+    "message": "io.fastlogs.sdk.core.exception",
+    "description": "The label for category io.fastlogs.sdk.core.exception in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.CallbackUriVerificationException": {
+    "message": "CallbackUriVerificationException",
+    "description": "The label for category CallbackUriVerificationException in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.ResponseException": {
+    "message": "ResponseException",
+    "description": "The label for category ResponseException in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.UriConstructionException": {
+    "message": "UriConstructionException",
+    "description": "The label for category UriConstructionException in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core.http": {
+    "message": "io.fastlogs.sdk.core.http",
+    "description": "The label for category io.fastlogs.sdk.core.http in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core.type": {
+    "message": "io.fastlogs.sdk.core.type",
+    "description": "The label for category io.fastlogs.sdk.core.type in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.core.util": {
+    "message": "io.fastlogs.sdk.core.util",
+    "description": "The label for category io.fastlogs.sdk.core.util in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.CallbackUriUtils": {
+    "message": "CallbackUriUtils",
+    "description": "The label for category CallbackUriUtils in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.ScopeUtils": {
+    "message": "ScopeUtils",
+    "description": "The label for category ScopeUtils in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.TokenUtils": {
+    "message": "TokenUtils",
+    "description": "The label for category TokenUtils in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Android": {
+    "message": "Android",
+    "description": "The label for category Android in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android": {
+    "message": "io.fastlogs.sdk.android",
+    "description": "The label for category io.fastlogs.sdk.android in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.FastlogsClient": {
+    "message": "FastlogsClient",
+    "description": "The label for category FastlogsClient in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.auth.fastlogs": {
+    "message": "io.fastlogs.sdk.android.auth.fastlogs",
+    "description": "The label for category io.fastlogs.sdk.android.auth.fastlogs in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.FastlogsWebViewAuthActivity": {
+    "message": "FastlogsWebViewAuthActivity",
+    "description": "The label for category FastlogsWebViewAuthActivity in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.FastlogsWebViewSocialHandler": {
+    "message": "FastlogsWebViewSocialHandler",
+    "description": "The label for category FastlogsWebViewSocialHandler in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.auth.social": {
+    "message": "io.fastlogs.sdk.android.auth.social",
+    "description": "The label for category io.fastlogs.sdk.android.auth.social in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.SocialException": {
+    "message": "SocialException",
+    "description": "The label for category SocialException in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.auth.social.alipay": {
+    "message": "io.fastlogs.sdk.android.auth.social.alipay",
+    "description": "The label for category io.fastlogs.sdk.android.auth.social.alipay in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.AlipaySocialSession": {
+    "message": "AlipaySocialSession",
+    "description": "The label for category AlipaySocialSession in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.auth.social.web": {
+    "message": "io.fastlogs.sdk.android.auth.social.web",
+    "description": "The label for category io.fastlogs.sdk.android.auth.social.web in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.WebSocialResultActivity": {
+    "message": "WebSocialResultActivity",
+    "description": "The label for category WebSocialResultActivity in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.auth.social.wechat": {
+    "message": "io.fastlogs.sdk.android.auth.social.wechat",
+    "description": "The label for category io.fastlogs.sdk.android.auth.social.wechat in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.WechatSocialResultActivity": {
+    "message": "WechatSocialResultActivity",
+    "description": "The label for category WechatSocialResultActivity in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.WechatSocialSession": {
+    "message": "WechatSocialSession",
+    "description": "The label for category WechatSocialSession in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.completion": {
+    "message": "io.fastlogs.sdk.android.completion",
+    "description": "The label for category io.fastlogs.sdk.android.completion in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.constant": {
+    "message": "io.fastlogs.sdk.android.constant",
+    "description": "The label for category io.fastlogs.sdk.android.constant in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.exception": {
+    "message": "io.fastlogs.sdk.android.exception",
+    "description": "The label for category io.fastlogs.sdk.android.exception in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.FastlogsException": {
+    "message": "FastlogsException",
+    "description": "The label for category FastlogsException in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.storage": {
+    "message": "io.fastlogs.sdk.android.storage",
+    "description": "The label for category io.fastlogs.sdk.android.storage in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.type": {
+    "message": "io.fastlogs.sdk.android.type",
+    "description": "The label for category io.fastlogs.sdk.android.type in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.io.fastlogs.sdk.android.util": {
+    "message": "io.fastlogs.sdk.android.util",
+    "description": "The label for category io.fastlogs.sdk.android.util in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.@fastlogs-docs.khulnasoft.com/swift": {
+    "message": "@fastlogs-docs.khulnasoft.com/swift",
+    "description": "The label for category @fastlogs-docs.khulnasoft.com/swift in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Fastlogs Module": {
+    "message": "Fastlogs Module",
+    "description": "The label for category Fastlogs Module in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Enums": {
+    "message": "Enums",
+    "description": "The label for category Enums in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Structs": {
+    "message": "Structs",
+    "description": "The label for category Structs in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Protocols": {
+    "message": "Protocols",
+    "description": "The label for category Protocols in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Extensions": {
+    "message": "Extensions",
+    "description": "The label for category Extensions in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.FastlogsClient Module": {
+    "message": "FastlogsClient Module",
+    "description": "The label for category FastlogsClient Module in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Classes": {
+    "message": "Classes",
+    "description": "The label for category Classes in sidebar sdkSidebar"
+  },
+  "sidebar.sdkSidebar.category.Typealiases": {
+    "message": "Typealiases",
+    "description": "The label for category Typealiases in sidebar sdkSidebar"
+  }
+}
