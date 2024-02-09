@@ -79,7 +79,11 @@
       "@silverhand/react",
       "plugin:mdx/recommended"
     ],
-    "ignorePatterns": ["generated-*.md", "generated-*.mdx", "_template-*.mdx"],
+    "ignorePatterns": [
+      "generated-*.md",
+      "generated-*.mdx",
+      "_template-*.mdx"
+    ],
     "settings": {
       "mdx/code-blocks": false
     },
@@ -110,5 +114,8 @@
       "props": "readonly"
     }
   },
-  "prettier": "@silverhand/eslint-config/.prettierrc"
+  "prettier": "@silverhand/eslint-config/.prettierrc",
+  "dependencies": {
+    "typecheck": "^0.1.2"
+  }
 }
